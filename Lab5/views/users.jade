@@ -1,7 +1,27 @@
 extends layout
 
 block content
-    h1= Promise
+    h1: Using Promise
     table
         tr
-            th
+            th Id
+            th Name
+            th UserName
+            th Email
+            th City
+            th "Zip Code"
+            th Latitude
+            th Longitude
+            th Website
+
+        for user in data
+            tr
+                td: !{user.id}
+                td: !{user.name}
+                td: !{user.username}
+                td: !{user.email}
+                td: !{user.address.city}
+                td: !{user.address.zipcode}
+                td: !{user.address.geo.lng}
+                td: !{user.address.geo.lat}
+                td: !{user.website}
