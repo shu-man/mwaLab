@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h1: Using Promise
+    h1 Promise
     table
         tr
             th Id
@@ -14,7 +14,57 @@ block content
             th Longitude
             th Website
 
-        for user in data
+        for user in data.dataUsingPromise
+            tr
+                td: !{user.id}
+                td: !{user.name}
+                td: !{user.username}
+                td: !{user.email}
+                td: !{user.address.city}
+                td: !{user.address.zipcode}
+                td: !{user.address.geo.lng}
+                td: !{user.address.geo.lat}
+                td: !{user.website}
+
+    h1 Observables
+    table
+        tr
+            th Id
+            th Name
+            th UserName
+            th Email
+            th City
+            th "Zip Code"
+            th Latitude
+            th Longitude
+            th Website
+
+        for user in data.dataUsingObservable
+            tr
+                td: !{user.id}
+                td: !{user.name}
+                td: !{user.username}
+                td: !{user.email}
+                td: !{user.address.city}
+                td: !{user.address.zipcode}
+                td: !{user.address.geo.lng}
+                td: !{user.address.geo.lat}
+                td: !{user.website}
+
+    h1 Async/Await
+    table
+        tr
+            th Id
+            th Name
+            th UserName
+            th Email
+            th City
+            th "Zip Code"
+            th Latitude
+            th Longitude
+            th Website
+
+        for user in data.dataUsingAsyncAwait
             tr
                 td: !{user.id}
                 td: !{user.name}

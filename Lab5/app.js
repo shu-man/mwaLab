@@ -13,6 +13,10 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.enable('view cache');
+app.enable('case sensitive routing');
+app.enable('strict routing');
+app.set('x-powered-by', false);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
