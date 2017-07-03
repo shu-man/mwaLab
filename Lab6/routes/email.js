@@ -9,7 +9,7 @@ var fs=require('fs');
 
 /*Displays the subscription page for user to enter email*/
 router.get('/', function (req, res, next) {
-    res.render('subscription');
+    res.render('subscription',{token:req.csrfToken()});
 });
 
 router.post('/', function (req, res, next) {
@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
     req.assert('email', 'Enter valid email').notEmpty().isEmail();
     const error = req.validationErrors();
     if (error) {
-        res.render('subscription',{errors:error[0].msg});
+        res.render('subscription',{errors:error[0].msg,token:req.csrfToken()});
     }
     else {
         fs.appendFileSync('subscribers.txt',email+'\n');

@@ -11,6 +11,6 @@ block content
                      div.form-group
                         label(for='email') Email:
                         input#email.form-control(type='email', placeholder='Enter your email..' name='email')
-                        input(type='hidden',name='_csrf',value='#{csrftoken}')
+                        input(type='hidden',name='_csrf',value='#{token}')
                      button.btn.btn-primary(type='submit') Submit
                  label #{errors}

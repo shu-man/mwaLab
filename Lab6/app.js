@@ -26,16 +26,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(validator());
-//app.use(csrf());
+app.use(csrf({cookie:true}));
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/newsletter',email);
 
-app.use(function (req,res,next) {
+/*app.use(function (req,res,next) {
   res.locals.csrftoken=req.csrfToken();
   next();
-})
+})*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
