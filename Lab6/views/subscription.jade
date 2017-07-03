@@ -1,0 +1,16 @@
+//
+   Created by Hatake on 7/3/2017.
+block content
+    .main.container
+        .row
+            .col-md-6.col-md-offset-3
+                h1.display-4.m-b-2 Subscription Form
+
+                // register form
+                form(method='POST'  action='/newsletter')
+                     div.form-group
+                        label(for='email') Email:
+                        input#email.form-control(type='email', placeholder='Enter your email..' name='email')
+                        input(type='hidden',name='_csrf',value='#{csrftoken}')
+                     button.btn.btn-primary(type='submit') Submit
+                 label #{errors}
