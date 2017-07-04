@@ -1,0 +1,20 @@
+Book {
+	_id: "",
+	isbn_number: "",
+	authors: [],
+	keywords: [],
+	copies: [],
+	student_info: [],
+	available_info: ""
+}
+
+Librarian {
+	username: "",
+	password: ""
+}
+
+Above design model can store book,student,author information.The above NoSQL design model is sufficient to manage library for smaller entries.
+
+
+
+
