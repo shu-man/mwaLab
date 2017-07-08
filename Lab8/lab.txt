@@ -1,0 +1,4 @@
+
+Library application performance can be increased with the help of indexing,we can perform our search faster than before because it will search
+with the help of index instead of searching the whole document.We can index author so that it will improve the performance of search.
+

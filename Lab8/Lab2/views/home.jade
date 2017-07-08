@@ -1,0 +1,78 @@
+//
+   Created by Hatake on 7/5/2017.
+extends layout
+
+block content
+
+    html(lang='en')
+        head
+            title Jade
+            script(src='/javascripts/jquery-2.1.1.min.js')
+            script(src='http://maps.googleapis.com/maps/api/js?sensor=false')
+            link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-gmaps-latlon-picker.css')
+            script(src='/javascripts/jquery-gmaps-latlon-picker.js')
+            link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+            link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+            script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
+            script(src='/javascripts/script.js')
+
+            body
+            h1 Location Map
+            fieldset.gllpLatlonPicker
+                input.gllpSearchField(type='text')
+                input.gllpSearchButton(type='button', value='search')
+                .gllpMap Google Maps
+                input.gllpLatitude(type='hidden', value='20' form='crudForm' name='latitude')
+                input.gllpLongitude(type='hidden', value='20' form='crudForm' name='longitude')
+                input.gllpZoom(type='hidden', value='3')
+        h1 Enter your Location points
+        form#crudForm(action='/',method='post')
+            | Name:
+            br
+            input(type='text', name='name', placeholder="Enter Name")
+            br
+            |   Category:
+            br
+            input(type='text', name='category', placeholder="Enter location")
+            br
+            br
+            input(type='submit', value='Submit')
+        h1 List of Locations
+        for data in locationData
+            p #{data.name}
+                a(href="/delete/#{data._id}")
+                        span.glyphicon.glyphicon-remove-circle
+
+                a.editBtn(href="#", data-toggle='modal', data-target='#myModal', name=JSON.stringify(data))
+                        span.glyphicon.glyphicon-edit
+
+
+
+        // Modal
+        #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    .modal-header
+                        h5#exampleModalLabel.modal-title Edit Location points
+                        button.close(type='button', data-dismiss='modal', aria-label='Close')
+                            span(aria-hidden='true') ×
+                    .modal-body
+                         form(action='/update', method='post')
+                             input#edit-id(type='hidden', name='id')
+                             .form-group
+                                 label.col-2.col-form-label(for='edit-name') Name
+                                 .col-10
+                                     input#edit-name.form-control(type='text', placeholder="Your name", name='name')
+                             .form-group
+                                 label.col-2.col-form-label(for='edit-category') Category
+                                 .col-10
+                                     input#edit-category.form-control(type='text', placeholder="Your category", name='category')
+                             .form-group
+                                 label.col-2.col-form-label(for='edit-longitude') Longitude
+                                 .col-10
+                                     input#edit-longitude.form-control(type='text', placeholder="Your Longitude", name='longitude')
+                             .form-group
+                                 label.col-2.col-form-label(for='edit-latitude') Latitude
+                                 .col-10
+                                     input#edit-latitude.form-control(type='text', placeholder="Your Latitude", name='latitude')
+                             input.btn.btn-primary(type='submit', value='Submit')
