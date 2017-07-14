@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-xs-12">
+  <form [formGroup]="myForm" (ngSubmit)="onsubmit()">
+<div class="form-group row">
+  <label for="name" class="col-2 col-form-label">Name</label>
+  <div class="col-10">
+    <input class="form-control" type="text"  id="name" [formControl]="myForm.controls['name']" [(ngModel)]="user.name">
+    <div *ngIf="!myForm.controls['name'].valid" >Required</div>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="email" class="col-2 col-form-label">Email</label>
+  <div class="col-10">
+    <input class="form-control" type="text"  id="email" [formControl]="myForm.controls['email']" [(ngModel)]="user.email">
+    <div *ngIf="!myForm.controls['email'].valid">Required</div>
+  </div>
+</div>
+<div class="form-group row">
+  <label for="post" class="col-2 col-form-label">Post</label>
+  <div class="col-10">
+    <textarea class="form-control"  id="post" [formControl]="myForm.controls['post']" [(ngModel)]="user.post"></textarea>
+    <div *ngIf="!myForm.controls['post'].valid">Minimum length 10</div>
+  </div>
+</div>
+    <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Submit</button>
+    <button type="button" class="btn btn-primary" (click)="userInfo()">GetData</button>
+</form>
+  </div>
+</div>
+
